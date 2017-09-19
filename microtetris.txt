@@ -1,0 +1,189 @@
+title TETRIS
+author TEAM TETRIS
+homepage stackoverflow.com
+realtime_interval 0.025
+noundo
+youtube umEDct4BoGc
+
+========
+OBJECTS
+========
+
+Background
+DARKGRAY
+00000
+00000
+00000
+00000
+00000
+
+Wall
+BLACK
+00000
+00000
+00000
+00000
+00000
+
+Foreground
+BLACK
+00000
+00000
+00000
+00000
+00000
+
+EmptierWall
+BLACK
+00000
+00000
+00000
+00000
+00000
+
+Generator
+BLACK
+00000
+00000
+00000
+00000
+00000
+
+Kill
+DARKGRAY
+00000
+00000
+00000
+00000
+00000
+
+Player
+BLACK
+00000
+00000
+00000
+00000
+00000
+
+Crate
+RED BLACK
+11111
+10001
+10001
+10001
+11111
+
+Final
+RED BLACK
+11111
+10001
+10001
+10001
+11111
+
+ScoreGen
+BLACK
+00000
+00000
+00000
+00000
+00000
+
+Score
+GREEN
+00000
+00000
+00000
+00000
+00000
+
+Win
+DARKGRAY
+00000
+00000
+00000
+00000
+00000
+
+
+=======
+LEGEND
+=======
+
+. = Background
+# = Wall
+P = Player
+* = Crate
+@ = Final and Foreground
+G = Generator
+K = Kill
+R = EmptierWall
+S = ScoreGen
+C = Score and Foreground
+W = Win
+
+=======
+SOUNDS
+=======
+
+
+================
+COLLISIONLAYERS
+================
+
+Background
+Generator, Kill, Win
+Player, Wall, Crate, Final, EmptierWall, Score, ScoreGen
+Foreground
+
+
+======
+RULES
+======
+
+[STATIONARY Player] [Crate] -> [Player] [DOWN Crate]
+
+[HORIZONTAL Player] [Crate] -> [Player] [HORIZONTAL Crate]
+
+DOWN [DOWN Player] [Crate | ... | NO Final | Final ] [Generator] -> [Player] [NO Final | ... | Final | Final] [Generator DOWN Crate]
+
+DOWN [Crate | Final] [Generator] -> [Final | Final] [Generator DOWN Crate]
+
+RIGHT [EmptierWall | Final | Final | Final | Final | Final | Final | Final | Final | Final] [ScoreGen | ... | NO Score] -> [EmptierWall | | | | | | | | |] [ScoreGen | ... | Score]
+
+DOWN [Final | NO Final] -> [NO Final | Final]
+
+[Kill Final] -> restart
+
+
+==============
+WINCONDITIONS
+==============
+
+Any Score on Win
+
+=======
+LEVELS
+=======
+
+S........W#
+#####G#####
+#KKKKKKKKK#
+R....*....#
+R.........#
+R.........#
+R.........#
+R.........#
+R.........#
+R.........#
+R.........#
+R.........#
+R.........#
+R.........#
+R.........#
+R.........#
+R.........#
+R.........#
+#@@@@@@@@@P
+
+message You won!
